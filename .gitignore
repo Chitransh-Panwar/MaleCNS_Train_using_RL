@@ -3,3 +3,5 @@
 ref/
 
 fly_env/
+
+.DS_Store
