@@ -1,0 +1,11 @@
+{
+  "policy": "connectome",
+  "seed": 0,
+  "steps": 20000,
+  "dropout": 0.25,
+  "n_envs": 4,
+  "lstm": 64,
+  "lr": 0.0003,
+  "freeze_gains": false,
+  "eval_n": 20
+}

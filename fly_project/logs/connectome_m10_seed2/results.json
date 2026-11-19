@@ -1,0 +1,6 @@
+{
+  "train_starts_smell_on": 0.99,
+  "test_starts_smell_on": 0.96,
+  "train_starts_smell_off": 1.0,
+  "test_starts_smell_off": 1.0
+}

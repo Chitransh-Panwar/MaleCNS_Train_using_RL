@@ -1,7 +1,25 @@
 .env
 
+
+
 ref/
 
 fly_env/
 
 .DS_Store
+
+
+# Ignore all .zip files
+*.zip
+
+# Ignore common image formats
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+*.ico
+
+# Ignore Python __init__ files
+__init__.py
