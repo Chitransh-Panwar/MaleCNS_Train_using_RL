@@ -1,0 +1,10 @@
+group,run,steps_to_95,final_success,final_ep_len
+connectome_frozen_m10,connectome_frozen_m10_seed0,45056,1.0,9.248
+connectome_frozen_m10,connectome_frozen_m10_seed1,66560,1.0,9.770000000000001
+connectome_frozen_m10,connectome_frozen_m10_seed2,39936,1.0,9.495999999999999
+connectome_m10,connectome_m10_seed0,33792,1.0,9.152000000000001
+connectome_m10,connectome_m10_seed1,38912,1.0,9.322
+connectome_m10,connectome_m10_seed2,29696,1.0,9.566
+plain_m10,plain_m10_seed0,49152,1.0,10.148
+plain_m10,plain_m10_seed1,54272,1.0,10.24
+plain_m10,plain_m10_seed2,44032,1.0,9.772

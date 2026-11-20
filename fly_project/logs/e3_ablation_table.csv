@@ -1,0 +1,13 @@
+group,seed,mode,smell,reset,shuffled,trained
+connectome_m10,0,det,off,0.32,0.3,1.0
+connectome_m10,0,det,on,0.98,0.9,1.0
+connectome_m10,0,sto,off,0.96,0.98,1.0
+connectome_m10,0,sto,on,0.98,0.98,1.0
+connectome_m10,1,det,off,0.46,0.46,1.0
+connectome_m10,1,det,on,0.48,0.66,1.0
+connectome_m10,1,sto,off,0.8,0.84,1.0
+connectome_m10,1,sto,on,0.86,1.0,1.0
+connectome_m10,2,det,off,0.46,0.46,1.0
+connectome_m10,2,det,on,0.34,0.64,0.96
+connectome_m10,2,sto,off,0.94,0.94,1.0
+connectome_m10,2,sto,on,0.88,0.94,1.0

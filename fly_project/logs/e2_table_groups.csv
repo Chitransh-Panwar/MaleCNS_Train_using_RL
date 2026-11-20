@@ -1,0 +1,4 @@
+group,seeds,steps_to_95_mean,steps_to_95_std,final_success,final_ep_len
+connectome_frozen_m10,3,50517.33,14127.24,1.0,9.5
+connectome_m10,3,34133.33,4617.47,1.0,9.35
+plain_m10,3,49152.0,5120.0,1.0,10.05

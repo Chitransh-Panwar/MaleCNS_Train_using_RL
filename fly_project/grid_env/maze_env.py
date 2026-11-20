@@ -6,8 +6,8 @@ from collections import deque
 class FlyGridEnv(gymnasium.Env):
     metadata = {"render_modes": ["human"], "render_fps": 4}
 
-    def __init__(self, grid_size=16, max_steps=200, e3_mode=False,
-             smell_dropout=0.0, gamma=0.99, shaping_scale=1.0, test_frac=0.15):
+    def __init__(self, grid_size=16, max_steps=200, e3_mode=False, smell_dropout=0.0,
+             gamma=0.99, shaping_scale=1.0, test_frac=0.15, goal=(8, 8)):
         super().__init__()
         self.grid_size = grid_size
         self.max_steps = max_steps
@@ -28,7 +28,7 @@ class FlyGridEnv(gymnasium.Env):
             dtype=np.float32
         )
 
-        self.goal_pos = np.array([8, 8], dtype=int)
+        self.goal_pos = np.array(goal, dtype=int)
 
         # Define obstacles
         self.obstacles = {
@@ -38,18 +38,31 @@ class FlyGridEnv(gymnasium.Env):
         }
 
         # Train and test start splits
-        split_rng = np.random.default_rng(0)
-        cells = [(x, y) for x in range(grid_size) for y in range(grid_size)
-                if (x, y) not in self.obstacles
-                and abs(x - self.goal_pos[0]) + abs(y - self.goal_pos[1]) >= 5]
-        order = split_rng.permutation(len(cells))
-        n_test = max(1, int(round(test_frac * len(cells))))
-        self.test_starts = [np.array(cells[i]) for i in order[:n_test]]
-        self.train_starts = [np.array(cells[i]) for i in order[n_test:]]
+        self.test_frac = test_frac
+        self._make_starts()
+
 
         self.current_pos = None
         self.steps_elapsed = 0
         self.is_test_mode = False
+
+
+    def _make_starts(self):
+        """Train / held-out test starts: random free cells (>= 5 from the goal), split with a fixed seed."""
+        split_rng = np.random.default_rng(0)
+        cells = [(x, y) for x in range(self.grid_size) for y in range(self.grid_size)
+                 if (x, y) not in self.obstacles
+                 and abs(x - self.goal_pos[0]) + abs(y - self.goal_pos[1]) >= 5]
+        order = split_rng.permutation(len(cells))
+        n_test = max(1, int(round(self.test_frac * len(cells))))
+        self.test_starts = [np.array(cells[i]) for i in order[:n_test]]
+        self.train_starts = [np.array(cells[i]) for i in order[n_test:]]
+
+    def set_goal(self, x, y):
+        assert (x, y) not in self.obstacles, "goal inside an obstacle"
+        self.goal_pos = np.array([x, y], dtype=int)
+        self._make_starts()
+        assert self.check_reachability(), "some start cannot reach the new goal"
 
     def set_mode(self, test=False, e3=None):
         self.is_test_mode = test

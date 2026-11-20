@@ -1,0 +1,19 @@
+{
+  "policy": "plain",
+  "seed": 2,
+  "steps": 150000,
+  "dropout": 0.25,
+  "n_envs": 4,
+  "lstm": 64,
+  "lr": 0.0003,
+  "freeze_gains": false,
+  "gain_mult": 10.0,
+  "eval_n": 50,
+  "goal": [
+    11,
+    4
+  ],
+  "load": "fly_project/logs/plain_m10_seed2/model",
+  "tag": "_toB",
+  "ckpt_every": 10000
+}
